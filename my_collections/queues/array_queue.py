@@ -1,27 +1,23 @@
 class ArrayQueue:
 
-    def __init__(self, size=10):
-        # type: (int) -> None
+    def __init__(self, size=10):  # type: (int) -> None
         self._array = [None] * size
         self._front = self._rear = None
         self.size = size
 
-    def is_full(self):
-        # type: () -> bool
+    def is_full(self):  # type: () -> bool
         if self._rear is self.size - 1:
             return True
         else:
             return False
 
-    def is_empty(self):
-        # type: () -> bool
+    def is_empty(self):  # type: () -> bool
         if self._rear is None and self._front is None:
             return True
         else:
             return False
 
-    def enqueue(self, value):
-        # type: (...)-> bool
+    def enqueue(self, value):  # type: (...)-> bool
         if self.is_full():
             print("Queue is full")
             return False
@@ -35,8 +31,7 @@ class ArrayQueue:
                 self._array[self._rear] = value
                 return True
 
-    def dequeue(self):
-        # type: (...)-> bool
+    def dequeue(self):  # type: (...)-> bool
         if self.is_empty():
             print("Queue is empty")
             return False
@@ -48,8 +43,7 @@ class ArrayQueue:
                 self._front += 1
                 return True
 
-    def peek(self):
-        # type: ()-> ...
+    def peek(self):  # type: ()-> ...
         if self.is_empty():
             print("Queue is empty")
             return False

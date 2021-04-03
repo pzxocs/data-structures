@@ -2,47 +2,42 @@ from node import *
 
 
 class SingleLinkedList:
-    def __init__(self, data=None, next_node=None):
-        # type: (...) -> None
+    def __init__(self, data=None, next_node=None):  # type: (...) -> None
         self.head = Node(data, next_node)
 
     def is_empty(self):
         # type: () -> bool
         return self.head.data is None
 
-    def prepend(self, data):
-        # type: (...) -> None
+    def prepend(self, data):  # type: (...) -> Node
         buff_node = Node(self.head.data, self.head.next_node)
         self.head.data = data
         self.head.next_node = buff_node
         self.head = Node(data, buff_node)
+        return self.head
 
-    def append(self, data):
-        # type: (...) -> None
+    def append(self, data):  # type: (...) -> Node
         new_node = Node(data)
         if self.is_empty():
             self.head = new_node
-            return
+            return new_node
         temp = self.head
 
         while temp.next_node is not None:
             temp = temp.next_node
 
         temp.next_node = new_node
+        return new_node
 
-    def remove_first(self):
-        # type: () -> bool
+    def remove_first(self):  # type: () -> bool
         if self.is_empty():
-            print ("List is empty")
             return False
         else:
             self.head = self.head.next_node
             return True
 
-    def remove_last(self):
-        # type: () -> bool
+    def remove_last(self):  # type: () -> bool
         if self.is_empty():
-            print ("List is empty")
             return False
         else:
             temp_target = self.head
@@ -55,10 +50,8 @@ class SingleLinkedList:
             temp_before_target.next_node = None
             return True
 
-    def remove_by_value(self, value):
-        # type: (...) -> bool
+    def remove_by_value(self, value):  # type: (...) -> bool
         if self.is_empty():
-            print ("List is empty")
             return False
         else:
             temp_before_target = Node(None, None)
@@ -76,13 +69,10 @@ class SingleLinkedList:
             if temp_target.data is value:
                 temp_before_target.next_node = temp_target.next_node
             else:
-                print("No such value in the list")
                 return False
 
-    def insert_after_value(self, node_value, insert_value):
-        # type: (...) -> bool
+    def insert_after_value(self, node_value, insert_value):  # type: (...) -> bool
         if self.is_empty():
-            print("List is empty")
             return False
 
         target_node = self.head
@@ -96,7 +86,6 @@ class SingleLinkedList:
             target_node.next_node = new_node
             return True
         else:
-            print("No such value in the list")
             return False
 
     def print_list(self):
