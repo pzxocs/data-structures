@@ -5,7 +5,7 @@ class ArrayQueue:
         self._front = self._rear = -1
         self.capacity = capacity
 
-    def _is_full(self):  # type: () -> bool
+    def is_full(self):  # type: () -> bool
         if self._rear is self.capacity - 1:
             return True
         else:
@@ -18,7 +18,7 @@ class ArrayQueue:
             return False
 
     def enqueue(self, value):  # type: (...) -> bool
-        if self._is_full():
+        if self.is_full():
             print("Queue is full")
             return False
         else:
@@ -53,8 +53,8 @@ class ArrayQueue:
         if self.is_empty():
             print("Queue is empty")
         else:
-            buff_array = []
             pointer = self._front
+            print(self._array[pointer])
             while pointer is not self._rear:
                 pointer += 1
                 print(self._array[pointer])
