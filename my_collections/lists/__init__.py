@@ -1,2 +1,2 @@
-from .node import *
-from .single_linked_list import *
+from .node import Node
+from .single_linked_list import SingleLinkedList
