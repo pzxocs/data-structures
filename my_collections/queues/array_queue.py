@@ -1,24 +1,24 @@
 class ArrayQueue:
 
-    def __init__(self, size=10):  # type: (int) -> None
-        self._array = [None] * size
-        self._front = self._rear = None
-        self.size = size
+    def __init__(self, capacity=10):  # type: (int) -> None
+        self._array = [None] * capacity
+        self._front = self._rear = -1
+        self.capacity = capacity
 
-    def is_full(self):  # type: () -> bool
-        if self._rear is self.size - 1:
+    def _is_full(self):  # type: () -> bool
+        if self._rear is self.capacity - 1:
             return True
         else:
             return False
 
     def is_empty(self):  # type: () -> bool
-        if self._rear is None and self._front is None:
+        if self._rear is -1 and  self._front is -1:
             return True
         else:
             return False
 
-    def enqueue(self, value):  # type: (...)-> bool
-        if self.is_full():
+    def enqueue(self, value):  # type: (...) -> bool
+        if self._is_full():
             print("Queue is full")
             return False
         else:
@@ -43,12 +43,23 @@ class ArrayQueue:
                 self._front += 1
                 return True
 
-    def peek(self):  # type: ()-> ...
+    def peek(self):  # type: () -> None
         if self.is_empty():
             print("Queue is empty")
-            return False
         else:
-            return self._array[self._front]
+            print (self._array[self._front])
+
+    def print_queue(self):  # type: () -> None
+        if self.is_empty():
+            print("Queue is empty")
+        else:
+            buff_array = []
+            pointer = self._front
+            while pointer is not self._rear:
+                pointer += 1
+                print(self._array[pointer])
+
+
 
 
 
