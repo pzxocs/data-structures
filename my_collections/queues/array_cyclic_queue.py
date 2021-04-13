@@ -24,12 +24,10 @@ class ArrayCyclicQueue:
         else:
             if self.is_empty():
                 self._front = self._rear = 0
-                self._array[self._rear] = data
-                return True
             else:
                 self._rear = (self._rear + 1) % self.capacity
-                self._array[self._rear] = data
-                return True
+            self._array[self._rear] = data
+            return True
 
     def dequeue(self):  # type () -> bool
         if self.is_empty():
@@ -37,10 +35,9 @@ class ArrayCyclicQueue:
         else:
             if self._front is self._rear:
                 self._rear = self._front = -1
-                return True
             else:
                 self._front = (self._front + 1) % self.capacity
-                return True
+            return True
 
     def peek(self):  # type () -> None
         if self.is_empty():

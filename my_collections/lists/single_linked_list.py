@@ -3,25 +3,25 @@ from node import *
 
 class SingleLinkedList:
     def __init__(self, data=None, next_node=None):  # type: (...) -> None
-        self.head = Node(data, next_node)
+        self._front = Node(data, next_node)
 
     def is_empty(self):
         # type: () -> bool
-        return self.head.data is None
+        return self._head.data is None
 
     def prepend(self, data):  # type: (...) -> Node
-        buff_node = Node(self.head.data, self.head.next_node)
-        self.head.data = data
-        self.head.next_node = buff_node
-        self.head = Node(data, buff_node)
-        return self.head
+        buff_node = Node(self._front.data, self._front.next_node)
+        self._front.data = data
+        self._front.next_node = buff_node
+        self._front = Node(data, buff_node)
+        return self._front
 
     def append(self, data):  # type: (...) -> Node
         new_node = Node(data)
         if self.is_empty():
-            self.head = new_node
+            self._front = new_node
             return new_node
-        temp = self.head
+        temp = self._front
 
         while temp.next_node is not None:
             temp = temp.next_node
@@ -33,14 +33,14 @@ class SingleLinkedList:
         if self.is_empty():
             return False
         else:
-            self.head = self.head.next_node
+            self._head = self._head.next_node
             return True
 
     def remove_last(self):  # type: () -> bool
         if self.is_empty():
             return False
         else:
-            temp_target = self.head
+            temp_target = self._head
             temp_before_target = None
 
             while temp_target.next_node is not None:
@@ -55,7 +55,7 @@ class SingleLinkedList:
             return False
         else:
             temp_before_target = Node(None, None)
-            temp_target = self.head
+            temp_target = self._front
 
             if temp_target.data is value:
                 self.remove_first()
@@ -75,7 +75,7 @@ class SingleLinkedList:
         if self.is_empty():
             return False
 
-        target_node = self.head
+        target_node = self._front
 
         while (target_node.data is not node_value and
                target_node.next_node is not None):
@@ -89,7 +89,7 @@ class SingleLinkedList:
             return False
 
     def print_list(self):
-        temp = self.head
+        temp = self._head
         while temp is not None:
             print(temp.data)
             temp = temp.next_node
